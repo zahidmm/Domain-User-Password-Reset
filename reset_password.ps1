@@ -33,5 +33,8 @@ if ($confirm -ne "Y" -and $confirm -ne "y") {
 # Set the user's password
 Set-ADAccountPassword -Identity $user -NewPassword $password -Reset
 
+# Set the "User must change password at next logon" flag
+Set-ADUser -Identity $username -ChangePasswordAtLogon $true
+
 # Display a message indicating success
-Write-Host "Password has been reset for user $username"
+Write-Host "Password has been reset for user $username. The user will be required to change the password at next logon."
